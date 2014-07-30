@@ -9,31 +9,17 @@ module IntergalacticMoneyCalculator
         attr_reader :sorted_symbols, :symbol_to_value_map
       end
 
-      def initialize
-        @intergalactic_symbols = []
-      end
-
-      def append(intergalactic_symbol: nil)
-        intergalactic_symbols << intergalactic_symbol
-      end
-
-      def length
-        intergalactic_symbols.length
-      end
-
-      def to_s
-        intergalactic_symbols.reduce('') do |string_representation, intergalactic_symbol|
-          string_representation + intergalactic_symbol.roman_numeral
-        end
+      def initialize(numeral_string: nil)
+        @numeral_string = numeral_string
       end
 
       def arabic_value
-        calculate_arabic_value to_s
+        calculate_arabic_value numeral_string
       end
 
       private
 
-      attr_reader :intergalactic_symbols
+      attr_reader :numeral_string
 
       def calculate_arabic_value(roman_numeral)
         case roman_numeral.length

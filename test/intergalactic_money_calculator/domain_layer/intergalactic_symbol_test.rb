@@ -10,11 +10,6 @@ module IntergalacticMoneyCalculator
         @prok = IntergalacticSymbol.create(name: 'prok', roman_numeral: 'V')
       end
 
-      def test_create_returns_a_non_nil_object
-        refute_nil glob
-        refute_nil prok
-      end
-
       def test_include_returns_the_correct_boolean_value
         assert IntergalacticSymbol.include?(name: 'prok')
         refute IntergalacticSymbol.include?(name: 'blah')

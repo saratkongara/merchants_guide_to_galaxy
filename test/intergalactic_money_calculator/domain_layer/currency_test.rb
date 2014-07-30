@@ -10,11 +10,6 @@ module IntergalacticMoneyCalculator
         @gold = Currency.create(name: 'Gold', conversion_ratio: 14_450)
       end
 
-      def test_create_returns_a_non_nil_object
-        refute_nil silver
-        refute_nil gold
-      end
-
       def test_include_returns_the_correct_boolean_value
         assert Currency.include?(name: 'Gold')
         refute Currency.include?(name: 'Iron')
