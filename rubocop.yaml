@@ -1,0 +1,5 @@
+LineLength:
+  Max: 160
+
+Documentation:
+  Enabled: false
