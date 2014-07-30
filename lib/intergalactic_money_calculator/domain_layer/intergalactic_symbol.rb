@@ -4,7 +4,7 @@ module IntergalacticMoneyCalculator
       @mapping_table ||= {}
 
       class << self
-          attr_accessor :mapping_table
+          attr_reader :mapping_table
       end
 
       attr_reader :name, :roman_numeral
