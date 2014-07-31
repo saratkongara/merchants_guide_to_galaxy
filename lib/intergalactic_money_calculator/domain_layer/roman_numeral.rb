@@ -1,13 +1,18 @@
+require_relative 'roman_numeral_validator'
+
 module IntergalacticMoneyCalculator
   module DomainLayer
     class RomanNumeral
       @sorted_symbols = %w{I V X L C D M}
+
       @symbol_to_value_map = { 'I' => 1, 'V' => 5, 'X' => 10, 'L' => 50,
                                'C' => 100, 'D' => 500, 'M' => 1000 }
 
       class << self
         attr_reader :sorted_symbols, :symbol_to_value_map
       end
+
+      attr_reader :numeral_string
 
       def initialize(numeral_string: nil)
         @numeral_string = numeral_string
@@ -17,9 +22,12 @@ module IntergalacticMoneyCalculator
         calculate_arabic_value numeral_string
       end
 
-      private
+      def valid?
+        validator = RomanNumeralValidator.new
+        validator.validate(roman_numeral: self)
+      end
 
-      attr_reader :numeral_string
+      private
 
       def calculate_arabic_value(roman_numeral)
         case roman_numeral.length
@@ -28,7 +36,7 @@ module IntergalacticMoneyCalculator
         when 2
           value_for_two_digits_numeral(roman_numeral[0], roman_numeral[1])
         else
-          value_for_three_and_more_digits_numeral(roman_numeral[0], roman_numeral[1], roman_numeral[2..-1])
+          value_for_three_or_more_digits_numeral(roman_numeral[0], roman_numeral[1], roman_numeral[2..-1])
         end
       end
 
@@ -52,7 +60,7 @@ module IntergalacticMoneyCalculator
         end
       end
 
-      def value_for_three_and_more_digits_numeral(first_digit, second_digit, remaining_numeral)
+      def value_for_three_or_more_digits_numeral(first_digit, second_digit, remaining_numeral)
         if first_digit_less_than_second_digit?(first_digit, second_digit)
           value_for_two_digits_numeral(first_digit, second_digit) + calculate_arabic_value(remaining_numeral)
         else

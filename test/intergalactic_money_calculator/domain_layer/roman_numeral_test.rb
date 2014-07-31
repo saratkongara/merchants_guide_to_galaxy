@@ -34,6 +34,18 @@ module IntergalacticMoneyCalculator
 
         assert_equal 14, roman_numeral.arabic_value
       end
+
+      def test_valid_returns_true_for_correct_roman_numeral
+        roman_numeral = RomanNumeral.new(numeral_string: 'CCCLXXXVIII')
+
+        assert roman_numeral.valid?
+      end
+
+      def test_valid_returns_false_for_incorrect_roman_numeral
+        roman_numeral = RomanNumeral.new(numeral_string: 'LCM')
+
+        refute roman_numeral.valid?
+      end
     end
   end
 end
