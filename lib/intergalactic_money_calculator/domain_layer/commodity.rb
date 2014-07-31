@@ -1,16 +1,16 @@
 module IntergalacticMoneyCalculator
   module DomainLayer
-    class Currency
+    class Commodity
       @mapping_table ||= {}
 
       class << self
           attr_reader :mapping_table
       end
 
-      attr_reader :name, :conversion_ratio
+      attr_reader :name, :credit_conversion_ratio
 
-      def self.create(name: nil, conversion_ratio: nil)
-        mapping_table[name] = new(name, conversion_ratio)
+      def self.create(name: nil, credit_conversion_ratio: nil)
+        mapping_table[name] = new(name, credit_conversion_ratio)
       end
 
       def self.for(name: nil)
@@ -23,8 +23,8 @@ module IntergalacticMoneyCalculator
 
       private
 
-      def initialize(name, conversion_ratio)
-        @name, @conversion_ratio = name, conversion_ratio
+      def initialize(name, credit_conversion_ratio)
+        @name, @credit_conversion_ratio = name, credit_conversion_ratio
       end
     end
   end

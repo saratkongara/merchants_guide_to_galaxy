@@ -15,7 +15,7 @@ module IntergalacticMoneyCalculator
         refute IntergalacticSymbol.include?(name: 'blah')
       end
 
-      def test_for_returns_the_appropriate_currency_object
+      def test_for_returns_the_appropriate_symbol_object
         intergalactic_symbol = IntergalacticSymbol.for(name: 'prok')
         assert_equal 'prok', intergalactic_symbol.name
         assert_equal 'V', intergalactic_symbol.roman_numeral

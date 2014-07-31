@@ -29,10 +29,10 @@ module IntergalacticMoneyCalculator
         assert_equal 44, roman_numeral.arabic_value
       end
 
-      def test_arabic_value_of_roman_numeral_for_14_returns_the_correct_value
-        roman_numeral = RomanNumeral.new(numeral_string: 'XIV')
+      def test_arabic_value_of_roman_numeral_for_1944_returns_the_correct_value
+        roman_numeral = RomanNumeral.new(numeral_string: 'MCMXLIV')
 
-        assert_equal 14, roman_numeral.arabic_value
+        assert_equal 1944, roman_numeral.arabic_value
       end
 
       def test_valid_returns_true_for_correct_roman_numeral
