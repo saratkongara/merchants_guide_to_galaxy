@@ -21,16 +21,22 @@ module IntergalacticMoneyCalculator
           IntergalacticSymbol.create(name: match_data.captures[0], roman_numeral: match_data.captures[1])
           response_model = ConversionNoteResponseModel.new(success: true)
         elsif (match_data = /^(.*) is (\d+) Credits$/.match(conversion_note))
-          components = match_data.captures[0].chomp.split(' ')
-          credits = match_data.captures[1]
-
-          if components.size >= 2 && components.last =~ /^[A-Z]/
-            create_commodity_from_intergalactic_units_and_credits(components, credits)
-            response_model = ConversionNoteResponseModel.new(success: true)
-          end
+          response_model = ConversionNoteResponseModel.new(success: true) if processed_credits_conversion_note?(match_data.captures)
         end
 
         response_model
+      end
+
+      def processed_credits_conversion_note?(captures)
+        components = captures[0].chomp.split(' ')
+        credits = captures[1]
+
+        if components.size >= 2 && components.last =~ /^[A-Z]/
+          create_commodity_from_intergalactic_units_and_credits(components, credits)
+          true
+        else
+          false
+        end
       end
 
       def create_commodity_from_intergalactic_units_and_credits(components, credits)

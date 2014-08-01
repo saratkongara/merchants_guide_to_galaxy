@@ -11,4 +11,9 @@ task :rubocop do
   system('rubocop -c rubocop.yaml')
 end
 
+desc 'Package as a Ruby Gem' 
+task :gem do
+  system('gem build merchants_guide_to_galaxy.gemspec')
+end
+
 task :default  => [:test, :rubocop]
