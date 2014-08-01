@@ -21,6 +21,10 @@ module IntergalacticMoneyCalculator
         assert_equal 'V', intergalactic_symbol.roman_numeral
       end
 
+      def teardown
+        IntergalacticSymbol.remove_all
+      end
+
       private
 
       attr_reader :glob, :prok

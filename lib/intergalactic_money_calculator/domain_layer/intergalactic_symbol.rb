@@ -21,6 +21,10 @@ module IntergalacticMoneyCalculator
         mapping_table.include? name
       end
 
+      def self.remove_all
+        mapping_table.clear
+      end
+
       private
 
       def initialize(name, roman_numeral)

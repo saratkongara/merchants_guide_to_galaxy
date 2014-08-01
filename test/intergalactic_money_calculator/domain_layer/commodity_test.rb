@@ -21,6 +21,10 @@ module IntergalacticMoneyCalculator
         assert_equal 17, commodity.credit_conversion_ratio
       end
 
+      def teardown
+        Commodity.remove_all
+      end
+
       private
 
       attr_reader :silver, :gold

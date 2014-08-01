@@ -43,6 +43,10 @@ module IntergalacticMoneyCalculator
         assert_equal 'XLIV', converter.roman_numeral
       end
 
+      def teardown
+        IntergalacticSymbol.remove_all
+      end
+
       private
 
       attr_reader :converter, :tegj, :pish, :prok, :glob

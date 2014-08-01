@@ -23,6 +23,10 @@ module IntergalacticMoneyCalculator
         assert_equal '3910 Credits', money.to_s
       end
 
+      def teardown
+        Commodity.remove_all
+      end
+
       private
 
       attr_reader :iron
