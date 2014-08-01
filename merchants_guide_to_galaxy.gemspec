@@ -23,4 +23,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency('minitest-reporters', '=1.0.0')
   s.add_development_dependency('json', '=1.8.1')
   s.add_development_dependency('simplecov', '=0.8.2')
+
+  s.license = 'MIT'
 end

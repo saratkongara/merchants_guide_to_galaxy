@@ -16,4 +16,9 @@ task :gem do
   system('gem build merchants_guide_to_galaxy.gemspec')
 end
 
+desc 'Run the console application'
+task :run do
+  system('bin/merchants_guide_to_galaxy.rb')
+end
+
 task :default  => [:test, :rubocop]
