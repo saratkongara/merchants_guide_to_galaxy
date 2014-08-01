@@ -50,7 +50,8 @@ module IntergalacticMoneyCalculator
       end
 
       def test_validation_fails_for_roman_numeral_with_large_value_symbol_preceeded_by_two_small_value_symbols
-        skip
+        roman_numeral = RomanNumeral.new(numeral_string: 'IIV')
+        refute validator.validate(roman_numeral: roman_numeral)
       end
 
       private

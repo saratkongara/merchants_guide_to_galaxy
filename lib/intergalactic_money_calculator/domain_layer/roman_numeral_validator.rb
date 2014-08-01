@@ -28,7 +28,7 @@ module IntergalacticMoneyCalculator
         check_if_v_is_followed_by_incorrect_symbol
         check_if_l_is_followed_by_incorrect_symbol
         check_if_d_is_followed_by_incorrect_symbol
-        # check_if_a_large_value_symbol_is_preceeded_by_two_small_value_symbols
+        check_if_a_large_value_symbol_is_preceeded_by_two_small_value_symbols
       end
 
       def check_for_repeated_occurrences_of_d_l_or_v
@@ -64,7 +64,29 @@ module IntergalacticMoneyCalculator
       end
 
       def check_if_a_large_value_symbol_is_preceeded_by_two_small_value_symbols
-        @valid = false if valid && numeral_string =~ /[I]{2,}V/
+        return if numeral_string.length == 1
+        numeral_string.split('').reduce do |prefix_substring, symbol|
+          if symbol_is_preceeded_by_two_small_value_symbols?(symbol, prefix_substring)
+            @valid = false
+            break
+          end
+          prefix_substring << symbol
+        end
+      end
+
+      def symbol_is_preceeded_by_two_small_value_symbols?(symbol, prefix_substring)
+        roman_numerals = %w{I V X L C D M}
+        symbol_index = roman_numerals.index(symbol)
+
+        return false if symbol_index.nil?
+
+        small_value_symbols = roman_numerals[0...symbol_index]
+
+        occurrence_count = small_value_symbols.reduce(0) do |sum, small_value_symbol|
+          prefix_substring.count(small_value_symbol)
+        end
+
+        occurrence_count > 1
       end
     end
   end

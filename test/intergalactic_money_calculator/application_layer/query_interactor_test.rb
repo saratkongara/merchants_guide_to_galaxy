@@ -32,6 +32,14 @@ module IntergalacticMoneyCalculator
         assert_equal 'glob prok Iron is 782 Credits', response_model.answer
       end
 
+      def test_execute_returns_the_error_response_for_invalid_query
+        request_model = QueryRequestModel.new(question: 'how much wood could a woodchuck chuck if a woodchuck could chuck wood ?')
+        interactor = QueryInteractor.new(request_model: request_model)
+        response_model = interactor.execute
+
+        assert_equal 'I have no idea what you are talking about', response_model.answer
+      end
+
       def teardown
         IntergalacticSymbol.remove_all
         Commodity.remove_all
