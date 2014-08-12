@@ -45,10 +45,10 @@ Future enhancements
 ==========================
 In the course of doing TDD and thinking through the problem, I took notes on some features that would be nice to have but I didn't want to get sidetracked until the core problem is solved. I am listing them here in no particular order.
 
-1. Should support entering conversion notes and queries in any order.
-2. Should support the ability to update the value (roman numeral) associated with a particular intergalactic symbol, by entering new conversion notes.
-3. Should support the ability to associate one intergalactic symbol with multiple digit roman numeral.
+1. Should support entering conversion notes and queries in any order. [DONE]
+2. Should support the ability to update the value (roman numeral) associated with a particular intergalactic symbol, by entering new conversion notes. [DONE]
+3. Should support the ability to associate one intergalactic symbol with multiple digit roman numeral. [DONE]
 4. Check case sensitivity.
 5. Check for valid and invalid conversion notes and queries and give appropriate error messages.
 
-Above all, I really enjoyed working on this application. Thank You for the opportunity.
+Above all, I really enjoyed working on this application. Thanks for the opportunity.

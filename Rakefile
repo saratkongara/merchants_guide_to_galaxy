@@ -18,7 +18,7 @@ end
 
 desc 'Run the console application'
 task :run do
-  system('bin/merchants_guide_to_galaxy.rb')
+  system('ruby bin/merchants_guide_to_galaxy.rb')
 end
 
 task :default  => [:test, :rubocop]

@@ -9,7 +9,7 @@ class ConsoleApplication
     print_instructions
     print 'Enter a conversion note or query (enter quit to terminate): '
 
-    while (input = gets.chomp)
+    while (input = gets.strip)
       break if input == 'quit'
       process_input(input)
       print "\nEnter a conversion note or query (enter quit to terminate): "
@@ -44,7 +44,7 @@ class ConsoleApplication
   end
 
   def conversion_note?(input)
-    input =~ /^([a-z]+) is ([I|V|X|L|C|D|M])$/ ||
+    input =~ /^([a-z]+) is ([I|V|X|L|C|D|M]+)$/ ||
     input =~ /^(.*) is (\d+) Credits$/
   end
 

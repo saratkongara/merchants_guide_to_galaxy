@@ -17,14 +17,23 @@ module IntergalacticMoneyCalculator
         conversion_note = request_model.note
         response_model = ConversionNoteResponseModel.new(success: false)
 
-        if (match_data = /^([a-z]+) is ([I|V|X|L|C|D|M])$/.match(conversion_note))
-          IntergalacticSymbol.create(name: match_data.captures[0], roman_numeral: match_data.captures[1])
-          response_model = ConversionNoteResponseModel.new(success: true)
+        if (match_data = /^([a-z]+) is ([I|V|X|L|C|D|M]+)$/.match(conversion_note))
+          response_model = ConversionNoteResponseModel.new(success: true) if processed_intergalactic_symbol_to_roman_numeral_conversion?(match_data.captures)
         elsif (match_data = /^(.*) is (\d+) Credits$/.match(conversion_note))
           response_model = ConversionNoteResponseModel.new(success: true) if processed_credits_conversion_note?(match_data.captures)
         end
 
         response_model
+      end
+
+      def processed_intergalactic_symbol_to_roman_numeral_conversion?(captures)
+        intergalactic_symbol = captures[0]
+        numeral_string = captures[1]
+
+        roman_numeral = RomanNumeral.new(numeral_string: numeral_string)
+        return false unless roman_numeral.valid?
+
+        IntergalacticSymbol.create(name: intergalactic_symbol, roman_numeral: numeral_string)
       end
 
       def processed_credits_conversion_note?(captures)
